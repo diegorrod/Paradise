@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Paradise" Class="ParadiseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-N8DPCIP\SQLEXPRESS;Initial Catalog=Paradise;Integrated Security=True" SettingsObjectName="ParadiseService.Properties.Settings" SettingsPropertyName="ParadiseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.RESERVA" Member="RESERVA">
+    <Type Name="RESERVA">
+      <Column Name="ResNro" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ResUsuIng" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="ResHab" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResFecIng" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResHorIng" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="ResMaqIng" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="ResUsuMod" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="ResPaxTit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ResMaqMod" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="ResFecMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResHorMod" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="ResUsuCan" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="ResFecCan" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResHorCan" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="ResMaqCan" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="ResQuien" Type="System.String" DbType="Char(60)" CanBeNull="true" />
+      <Column Name="ResSerObs" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResPago" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ResTel" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="ResFax" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="ResResPor" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="ResFecEnt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResFecSal" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResEsta" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="ResProced" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="RHConLin" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResPlan" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="ResConSen" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResConfirm" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ResFecConf" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResHorConf" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="ResMotCan" Type="System.String" DbType="Char(60)" CanBeNull="true" />
+      <Column Name="ResPorDto" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="DescId" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResEmpPaga" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ResDestino" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="ResConRoo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ResTarifCar" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ResMonFact" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResCamMat" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResCamSin" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResCamCun" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResHoraEntrada" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="ResGruId" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="AgeViaId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ResCambioDatAgencia" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ResPagaHospedaje" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ResFecEntHor" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="ResMucLinObs" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResMail" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="ResHabiaSenia" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ResHisHabNumAnt" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResHisTarIdAnt" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="ResHisTarMonIdAnt" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResHisTarImporteAnt" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ResConfPorMail" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ResEMailId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ResDesAplicableA" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ResCantPax" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="TipOcuId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ResFichaDeIngreso" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ResMotivoAlojamiento" Type="System.String" DbType="Char(80)" CanBeNull="true" />
+      <Column Name="ResLateCheckOut" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ResDesayunos" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResVoucherAgencia" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="ResCanFacIdNoShow" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ResCanNoShow" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ResSeniaUtilizada" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ResAutoMatricula" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="ResAutoColor" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="ResAutoModelo" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="ResAutoMarca" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="ResFechaConfirmacionMovible" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ResFechaConfirmacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResMaqVer" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="ResUsuVer" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="ResHorVer" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="ResFecVer" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResVerificada" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

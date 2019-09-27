@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 20.875" name="Paradise">
+  <DataContextMoniker Name="/ParadiseDataContext" />
+  <nestedChildShapes>
+    <classShape Id="6b7f52bb-b027-42f1-b700-397dabd6e4cb" absoluteBounds="6.75, 4.625, 2, 16.001202799479167">
+      <DataClassMoniker Name="/ParadiseDataContext/RESERVA" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0b98a422-1596-4cb1-a56e-88c16e6dbbce" absoluteBounds="6.765, 5.085, 1.9700000000000002, 15.441202799479166" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
