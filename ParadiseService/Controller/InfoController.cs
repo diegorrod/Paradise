@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -17,6 +18,15 @@ namespace Paradise.Service.Controller
         {
             var result = await Task.Run(() =>
             {
+                string DSN = "Paradise";
+                using (Microsoft.Win32.RegistryKey localMachineHive = Registry.LocalMachine)
+                using (RegistryKey odbcDriversKey = localMachineHive.OpenSubKey(string.Format(@"SOFTWARE\ODBC\odbc.ini\{0}", DSN)))
+                {
+                    if (odbcDriversKey != null)
+                    {
+                        Console.Write(odbcDriversKey.GetValue("Server").ToString());
+                    }
+                }
                 return new Model.Info()
                 {
                     ServiceName = Assembly.GetEntryAssembly().GetName().Name,

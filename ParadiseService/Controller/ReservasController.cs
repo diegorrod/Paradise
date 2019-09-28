@@ -21,7 +21,23 @@ namespace Paradise.Service.Controller
                 {
                     using (var db = new ParadiseDataContext())
                     {
-                        var res = (from x in db.RESERVA where x.ResFecEnt == request.Ingresan.Fecha select x).ToList();
+                        var res = (
+                            from reserva 
+                            in db.RESERVA 
+                            join habitacion in db.HABITACION 
+                            on reserva.ResHab equals habitacion.HabNum
+                            join usuarioIng in db.USUARIOS.DefaultIfEmpty()
+                            on reserva.ResUsuIng equals usuarioIng.UsuId
+                            join usuarioMod in db.USUARIOS.DefaultIfEmpty()
+                            on reserva.ResUsuMod equals usuarioMod.UsuId
+                            where reserva.ResFecEnt == request.Ingresan.Fecha 
+                            orderby reserva.ResHab
+                            select new {
+                                Res = reserva,
+                                Hab = habitacion,
+                                UsuarioI = usuarioIng,
+                                UsuarioM = usuarioMod,
+                            }).ToList();
                         return Ok(res);
                     }
                 }

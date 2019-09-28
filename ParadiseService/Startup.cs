@@ -6,6 +6,7 @@ using Microsoft.Owin.FileSystems;
 using Microsoft.Owin.StaticFiles;
 using Owin;
 using Nancy;
+using System.Web.Http.Cors;
 
 namespace Paradise.Service
 {
@@ -28,7 +29,13 @@ namespace Paradise.Service
 
             // Configure Web API for self-host. 
             var config = new HttpConfiguration();
+
+            // Map Routes
             config.MapHttpAttributeRoutes();
+
+            // Enable CORS
+            var cors = new EnableCorsAttribute("http://localhost:3030,http://localhost:3000", "*", "*");
+            config.EnableCors(cors);
 
             // Web Api
             app.UseWebApi(config);

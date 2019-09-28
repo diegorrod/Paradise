@@ -6,12 +6,27 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E67D5D9A-EC04-4A73-8132-B37642E5BBBE}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ParadiseService</RootNamespace>
+    <RootNamespace>Paradise.Service</RootNamespace>
     <AssemblyName>ParadiseService</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -72,8 +87,14 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.Owin, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.7\lib\net45\System.Web.Http.Owin.dll</HintPath>
@@ -111,15 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="client\build\asset-manifest.json" />
-    <None Include="client\build\manifest.json" />
-    <None Include="client\build\static\css\main.b100e6da.chunk.css.map" />
-    <None Include="client\build\static\js\2.5d6dbd9e.chunk.js.map" />
-    <None Include="client\build\static\js\main.a81f1f4d.chunk.js.map" />
-    <None Include="client\build\static\js\runtime-main.a7ca617d.js.map" />
-    <None Include="client\data.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="Paradise.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
@@ -135,30 +147,26 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="client\build\favicon.ico" />
-    <Content Include="client\build\index.html" />
-    <Content Include="client\build\logo192.png" />
-    <Content Include="client\build\logo512.png" />
-    <Content Include="client\build\precache-manifest.10fd411619bcb9863bca894acb5b62e2.js" />
-    <Content Include="client\build\robots.txt" />
-    <Content Include="client\build\service-worker.js" />
-    <Content Include="client\build\static\css\main.b100e6da.chunk.css" />
-    <Content Include="client\build\static\js\2.5d6dbd9e.chunk.js" />
-    <Content Include="client\build\static\js\main.a81f1f4d.chunk.js" />
-    <Content Include="client\build\static\js\runtime-main.a7ca617d.js" />
-    <Content Include="client\build\static\media\logo.25bf045c.svg" />
-    <Content Include="client\testfile.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="client\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>XCOPY "$(SolutionDir)ParadiseService\client\build" "$(TargetDir)\h\" /S /Y</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>cd "$(SolutionDir)ParadiseService\client"
+yarn build</PreBuildEvent>
   </PropertyGroup>
 </Project>
