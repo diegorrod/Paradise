@@ -900,7 +900,7 @@ namespace Paradise.Service
     #endregion
 		
 		public ParadiseDataContext() : 
-				base(global::Paradise.Service.Properties.Settings.Default.ParadiseConnectionString1, mappingSource)
+				base(GetServer(), mappingSource)
 		{
 			OnCreated();
 		}

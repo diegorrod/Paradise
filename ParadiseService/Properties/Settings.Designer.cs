@@ -22,27 +22,5 @@ namespace Paradise.Service.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-N8DPCIP\\SQLEXPRESS;Initial Catalog=Paradise;Integrated Securi" +
-            "ty=True")]
-        public string ParadiseConnectionString {
-            get {
-                return ((string)(this["ParadiseConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Server01\\SQLExpress;Initial Catalog=Paradise;Integrated Security=True" +
-            "")]
-        public string ParadiseConnectionString1 {
-            get {
-                return ((string)(this["ParadiseConnectionString1"]));
-            }
-        }
     }
 }
