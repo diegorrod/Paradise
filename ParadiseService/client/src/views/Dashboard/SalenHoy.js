@@ -1,7 +1,8 @@
 import React from 'react';
 import { TarjetaDeReservas } from './TarjetaDeReservas';
 
-export const IngresanHoy = () => {
+export const SalenHoy = () => {
+
   return (
     <TarjetaDeReservas
       url="dashboard/salen-hoy"

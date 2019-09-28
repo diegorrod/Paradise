@@ -1,0 +1,207 @@
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
+import Moment from 'moment';
+import Numeral from 'numeral';
+import { Card, Breadcrumb, Icon, Table, Tag, ConfigProvider } from 'antd';
+
+const Estado = value => {
+  let color = '#2196f3'
+  if (value === 'Pendiente') color = '#ffc107';
+  else if (value === 'Cancelada') color = '#f44336';
+  else if (value === 'Ocupada') color = '#4caf50';
+  else if (value === 'Finalizada') color = '#607d8b'
+
+  return (
+    <Tag color={color} key={value}>
+      {value}
+    </Tag>
+  )
+}
+  
+const handleReservas = (values) => {
+// eslint-disable-next-line no-restricted-syntax
+  for (const res of values) {
+    if (res.ResEsta.trim() === 'RESINDIV' && res.ResConfirm === 'S') {
+    res.ResEsta = 'Confirmada';
+    } else if (res.ResEsta.trim() === 'RESINDIV') {
+    res.ResEsta = 'Pendiente'
+    } else if (res.ResEsta.trim() === 'CANCEL.') {
+    res.ResEsta = 'Cancelada'
+    } else if (res.ResEsta.trim() === 'OCUPADA') {
+    res.ResEsta = 'Ocupada'
+    } else if (res.ResEsta.trim() === 'LIBRE') {
+    res.ResEsta = 'Finalizada'
+    }
+    res.key = res.ResNro;
+  }
+  return values;
+}
+
+export const columns = {
+  ResNro: {
+    title: 'Nº',
+    dataIndex: 'ResNro',
+    key: 'ResNro',
+    width: 100,
+    render: (text, record) => (
+        <a>
+          {text}
+        </a>        
+      )
+  },
+  ResHab: {
+    title: 'Habitación',
+    dataIndex: 'ResHab',
+    key: 'ResHab',
+    width: 200,
+    render: (text, record) => (
+      <span>
+        {`${record.ResHab} - ${record.ResHabNom}`}
+      </span>
+    )
+  },
+  ResQuien: {
+    title: 'Titular',
+    dataIndex: 'ResQuien',
+    key: 'ResQuien',
+  },
+  ResEsta: {
+    title: 'Estado',
+    dataIndex: 'ResEsta',
+    key: 'ResEsta',
+    render: ResEsta => (
+      <span>
+        {Estado(ResEsta)}
+      </span>
+    )
+  },
+  ResFecEnt: {
+    title: 'Check In',
+    dataIndex: 'ResFecEnt',
+    key: 'ResFecEnt',
+    width: 140,
+    render: ResFecEnt => (
+      <span>
+        {Moment(ResFecEnt).format("DD/MM/YYYY")}
+      </span>
+    )
+  },
+  ResFecSal: {
+    title: 'Check Out',
+    dataIndex: 'ResFecSal',
+    key: 'ResFecSal',
+    width: 140,
+    render: ResFecSal => (
+      <span>
+        {Moment(ResFecSal).format("DD/MM/YYYY")}
+      </span>
+    )
+  },
+  ResIng: {
+    title: 'Ingresada por',
+    dataIndex: 'ResUsuIngNom',
+    key: 'ResUsuIngNom',
+    render: (ResUsuIngNom, record) => (
+      <span>
+        {`${ResUsuIngNom} el ${Moment(record.ResFecIng).format("DD/MM/YYYY")}`}
+      </span>
+    )
+  },
+  ResUsuIngNom: {
+    title: 'Por',
+    dataIndex: 'ResUsuIngNom',
+    key: 'ResUsuIngNom',
+  },
+  ResUsuModNom: {
+    title: 'Mod. por',
+    dataIndex: 'ResUsuModNom',
+    key: 'ResUsuModNom',
+  },
+  ResImp: {
+    title: 'Ingresada por',
+    dataIndex: 'ResTarImp',
+    key: 'ResTarImp',
+    render: (ResTarImp, record) => (
+      <span>
+        {`${record.ResTarMonSim} ${Numeral(ResTarImp).format('0,0')}`}
+      </span>
+    )
+  }
+}
+
+export const TarjetaDeReservas = props => {
+  const [reservas, setReservas] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const defColumns = [
+    columns.ResNro,
+    columns.ResHab,
+    columns.ResQuien,
+    columns.ResEsta
+  ];
+
+  useEffect(() => {
+    setLoading(true);
+    Axios.get(props.url, {
+    }).then((result) => {
+      setReservas(handleReservas(result.data));
+      setLoading(false);
+    })}, []);
+
+  return (
+    <Card
+      bordered={false}
+      style={{
+        borderRadius: '8px',
+        marginTop: '24px'
+      }}>
+      <Breadcrumb style={{marginBottom: '16px'}}>
+        <Breadcrumb.Item style={{color: '#2196f3'}}>
+          Reservas
+        </Breadcrumb.Item>
+        <Breadcrumb.Item
+          style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          color: '#2196f3'
+        }}
+        >
+          <span>{props.title}</span>
+          <Icon
+            component={() => (
+              <i
+                className={`fad fa-${props.icon}`}
+                style={{
+                fontSize: '1.2rem',
+                margin: '0px 8px'
+              }}
+              />
+          )}
+          />                    
+        </Breadcrumb.Item>
+      </Breadcrumb>
+      <ConfigProvider renderEmpty={() => (
+        <div style={{ textAlign: 'center' }}>
+          <Icon
+            component={() => (
+              <i
+                className="fad fa-info"
+                style={{
+                  padding: '2.5rem 0',
+                  fontSize: '5rem',
+                  color: '#2196f3'
+                }}
+              />
+            )}/>
+          <p>Sin ingresos para hoy...</p>
+        </div>)}>
+        <Table
+          columns={props.columns ? props.columns : defColumns}
+          dataSource={reservas}
+          bordered={false}
+          loading={loading} />
+      </ConfigProvider>
+    </Card>
+  )
+}
+  
