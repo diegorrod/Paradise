@@ -64,8 +64,8 @@ namespace Paradise.Service.Controller.Dashboard
                     ResUsuMod = res.ResUsuMod.Trim(),
                     ResUsuModNom = usuarioM != null ? CultureInfo.CurrentCulture.TextInfo.ToTitleCase(usuarioM.UsuNom.Trim().ToLower()) : "",
                     ResTarMonCod = moneda != null ? moneda.MonId : (short)0,
-                    ResTarMonDes = moneda != null ? moneda.MonDsc : "",
-                    ResTarMonSim = moneda != null ? moneda.MonSim : "",
+                    ResTarMonDes = moneda != null ? moneda.MonDsc.Trim() : "",
+                    ResTarMonSim = moneda != null ? moneda.MonSim.Trim() : "",
                     ResTarImp = ResImpTar
                 }) ;
             }
