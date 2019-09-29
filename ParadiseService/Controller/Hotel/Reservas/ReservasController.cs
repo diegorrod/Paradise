@@ -17,7 +17,7 @@ namespace Paradise.Service.Controller.Hotel.Reservas
         // Reserva observaciones
         [Route("{resNro}/observaciones")]
         [HttpGet]
-        public async Task<IHttpActionResult> GetObservaciones([FromUri]int resNro)
+        public async Task<IHttpActionResult> GetObservaciones(string resNro)
         {
             return await Task.Run<IHttpActionResult>(() =>
             {
@@ -27,6 +27,17 @@ namespace Paradise.Service.Controller.Hotel.Reservas
                     {
                         var result = (from obs
                                      in db.RESOBSERVA
+                                      where obs.ResNro == Convert.ToInt32(resNro)
+                                      select obs.ResDatObs).ToList();
+                        return Ok(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return InternalServerError(ex);
+                }
+            });
+        }
                                       where obs.ResNro == resNro
                                       select obs).ToList();
                         return Ok(result);
