@@ -116,6 +116,7 @@
     <Compile Include="Controller\Dashboard\PendientesDeConfirmar.cs" />
     <Compile Include="Controller\Dashboard\SalenHoyController.cs" />
     <Compile Include="Controller\Dashboard\IngresanHoyController.cs" />
+    <Compile Include="Controller\Hotel\Reservas\ReservasController.cs" />
     <Compile Include="Controller\InfoController.cs" />
     <Compile Include="Controller\ReservasController.cs" />
     <Compile Include="CustomContentTypeProvider.cs" />
@@ -168,9 +169,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\Hotel\Reservas\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>XCOPY "$(SolutionDir)ParadiseService\client\build" "$(TargetDir)\h\" /S /Y</PostBuildEvent>

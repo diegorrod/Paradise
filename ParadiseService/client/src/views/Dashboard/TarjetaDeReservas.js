@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Moment from 'moment';
 import Numeral from 'numeral';
-import { Card, Breadcrumb, Icon, Table, Tag, ConfigProvider } from 'antd';
+import { Card, Breadcrumb, Icon, Table, Tag, ConfigProvider, notification, Button } from 'antd';
 import { detalleReserva } from './TarjetaDeReservas.Detalle';
 
 const Estado = value => {
@@ -170,22 +170,46 @@ export const TarjetaDeReservas = props => {
   const [columnDef, setColumnDef] = useState([])
   const [reservas, setReservas] = useState([]);
   const [loading, setLoading] = useState(false);
+  const defEmpty = {icon: 'info', message: 'Sin datos que mostrar...', actualizar: true};
+  const [empty, setEmpty] = useState(defEmpty)
 
   const handleChange = (pagination, filters, sorter) => {
     setFiltersValues(filters);
   };
 
+  const obtenerDatos = () => {
+    setLoading(true);
+    setEmpty({icon: 'search', message: 'Buscando datos para mostrar...', actualizar: false});
+
+    setColumnDef(props.columns ? props.columns : defColumns)
+    setFiltersValues(props.filtersValues || defFiltersValues)
+    Axios.get(props.url)
+      .then((result) => {
+        setReservas(handleReservas(result.data));
+        setLoading(false);
+        setEmpty(defEmpty);
+      })
+      .catch(() => {
+        const notificar = mensaje => {
+          notification.error({
+            message: 'Ups!!!',
+            description: mensaje,
+            duration: 10
+          })
+          setEmpty({icon: 'flushed', message: 'Algo salió mal, y no sabemos porque...', actualizar: true});
+        }
+        notificar('Algo salió mal, y no sabemos porque...');
+        setReservas([]);
+        setLoading(false);
+      })
+  }
+  
+
   defColumns.find(x => x.dataIndex === 'ResEsta').filteredValue = filetrsValues.ResEsta;
 
   useEffect(() => {
-    setLoading(true);
-    setColumnDef(props.columns ? props.columns : defColumns)
-    setFiltersValues(props.filtersValues || defFiltersValues)
-    Axios.get(props.url, {
-    }).then((result) => {
-      setReservas(handleReservas(result.data));
-      setLoading(false);
-    })}, []);
+    obtenerDatos();
+    }, []);
 
   return (
     <Card
@@ -224,7 +248,7 @@ export const TarjetaDeReservas = props => {
           <Icon
             component={() => (
               <i
-                className="fad fa-info"
+                className={`fad fa-${empty.icon}`}
                 style={{
                   padding: '2.5rem 0',
                   fontSize: '5rem',
@@ -232,7 +256,12 @@ export const TarjetaDeReservas = props => {
                 }}
               />
             )}/>
-          <p>Sin ingresos para hoy...</p>
+          <p>{empty.message}</p>
+          <Button onClick={()=>{ obtenerDatos() }} style={{
+              visibility: empty.actualizar ? 'visible' : 'hidden'
+            }}>
+            Actualizar
+          </Button>
         </div>)}>
         <Table
           columns={columnDef}
