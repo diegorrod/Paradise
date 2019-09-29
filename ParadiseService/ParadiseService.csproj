@@ -118,7 +118,6 @@
     <Compile Include="Controller\Dashboard\IngresanHoyController.cs" />
     <Compile Include="Controller\Hotel\Reservas\ReservasController.cs" />
     <Compile Include="Controller\InfoController.cs" />
-    <Compile Include="Controller\ReservasController.cs" />
     <Compile Include="CustomContentTypeProvider.cs" />
     <Compile Include="CustomMiddleware.cs" />
     <Compile Include="Misc\StringExtensions.cs" />
