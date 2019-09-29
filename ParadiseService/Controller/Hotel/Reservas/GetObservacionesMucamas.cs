@@ -21,9 +21,9 @@ namespace Paradise.Service.Controller.Hotel.Reservas
                     {
                         db.CommandTimeout = SQL_TIMEOUTE;
                         var result = (from obs
-                                     in db.RESERVAMUCAMA
+                                      in db.RESERVAMUCAMA
                                       where obs.ResNro == Convert.ToInt32(resNro)
-                                      select obs).ToList();
+                                      select obs.ResMucObs).ToList();
                         return Ok(result);
                     }
                 }
