@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
+import Moment from 'moment';
 
 import { App } from './App';
 
@@ -16,5 +17,7 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   // production code
   Axios.defaults.baseURL='/api';
 }
+
+Moment.locale('es');
 
 ReactDOM.render(<App />, document.getElementById('App'))

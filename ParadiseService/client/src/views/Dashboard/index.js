@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Row, Col, PageHeader, Tag } from 'antd';
+import { Layout, Row, Col, PageHeader, Tag, Divider } from 'antd';
 import { IngresanHoy } from './IngresanHoy'
 import { SalenHoy } from './SalenHoy';
 import { PendientesDeConfirmar } from './PendientesDeConfirmar';
@@ -11,7 +11,8 @@ export const Dashboard = () => {
       <PageHeader title="Dashboard" tags={<Tag color="#2196f3">Beta</Tag>}/>
       </Layout.Header>
       <Layout.Content>
-        <Row gutter='24' style={{padding: '0 50px', paddingBottom: '50px'}}>
+        <Divider style={{padding: '0 50px'}}>Información general</Divider>
+        <Row gutter={24} style={{padding: '0 50px', paddingBottom: '50px'}}>
           <Col
               xl={{
                 span: 12,

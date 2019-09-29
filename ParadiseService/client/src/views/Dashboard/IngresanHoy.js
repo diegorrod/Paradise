@@ -4,8 +4,11 @@ import { TarjetaDeReservas } from './TarjetaDeReservas';
 export const IngresanHoy = () => {
   return (
     <TarjetaDeReservas
-      url="dashboard/salen-hoy"
-      title="Salen hoy..."
-      icon="sign-out-alt" />
+      url="dashboard/ingresan-hoy"
+      title="Ingresan hoy..."
+      icon="sign-in-alt"
+      filtersValues={{
+        ResEsta: ['Pendiente', 'Confirmada']
+      }} />
   )
 }

@@ -7,6 +7,8 @@ export const SalenHoy = () => {
     <TarjetaDeReservas
       url="dashboard/salen-hoy"
       title="Salen hoy..."
-      icon="sign-out-alt" />
+      icon="sign-out-alt"      filtersValues={{
+        ResEsta: ['Ocupada']
+      }} />
   )
 }

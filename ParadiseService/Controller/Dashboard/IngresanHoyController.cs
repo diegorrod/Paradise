@@ -16,8 +16,8 @@ namespace Paradise.Service.Controller.Dashboard
         {
             return await Task.Run<IHttpActionResult>(() =>
             {
-                try
-                {
+                //try
+                //{
                     using (var db = new ParadiseDataContext())
                     {
                         var data = from res
@@ -28,11 +28,11 @@ namespace Paradise.Service.Controller.Dashboard
 
                         return Ok(ExtendReserva(data, db));
                     }
-                }
-                catch (Exception ex)
-                {
-                    return InternalServerError(ex);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    return InternalServerError(ex);
+                //}
             });
         }
     }

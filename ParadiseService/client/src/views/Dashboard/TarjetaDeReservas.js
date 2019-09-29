@@ -3,6 +3,7 @@ import Axios from 'axios';
 import Moment from 'moment';
 import Numeral from 'numeral';
 import { Card, Breadcrumb, Icon, Table, Tag, ConfigProvider } from 'antd';
+import { detalleReserva } from './TarjetaDeReservas.Detalle';
 
 const Estado = value => {
   let color = '#2196f3'
@@ -42,9 +43,9 @@ export const columns = {
     title: 'Nº',
     dataIndex: 'ResNro',
     key: 'ResNro',
-    width: 100,
+    width: 60,
     render: (text, record) => (
-        <a>
+        <a onClick={()=>detalleReserva(record)}>
           {text}
         </a>        
       )
@@ -53,7 +54,7 @@ export const columns = {
     title: 'Habitación',
     dataIndex: 'ResHab',
     key: 'ResHab',
-    width: 200,
+    width: 140,
     render: (text, record) => (
       <span>
         {`${record.ResHab} - ${record.ResHabNom}`}
@@ -69,6 +70,30 @@ export const columns = {
     title: 'Estado',
     dataIndex: 'ResEsta',
     key: 'ResEsta',
+    width: 80,
+    filters: [
+      {
+        text: 'Pendiente',
+        value: 'Pendiente'
+      },
+      {
+        text: 'Confirmada',
+        value: 'Confirmada'
+      },
+      {
+        text: 'Ocupada',
+        value: 'Ocupada'
+      },
+      {
+        text: 'Finalizada',
+        value: 'Finalizada'
+      },
+      {
+        text: 'Cancelada',
+        value: 'Cancelada'
+      }
+    ],
+    onFilter: (value, record) => record.ResEsta === value ? true : false,
     render: ResEsta => (
       <span>
         {Estado(ResEsta)}
@@ -79,7 +104,7 @@ export const columns = {
     title: 'Check In',
     dataIndex: 'ResFecEnt',
     key: 'ResFecEnt',
-    width: 140,
+    width: 100,
     render: ResFecEnt => (
       <span>
         {Moment(ResFecEnt).format("DD/MM/YYYY")}
@@ -90,7 +115,7 @@ export const columns = {
     title: 'Check Out',
     dataIndex: 'ResFecSal',
     key: 'ResFecSal',
-    width: 140,
+    width: 100,
     render: ResFecSal => (
       <span>
         {Moment(ResFecSal).format("DD/MM/YYYY")}
@@ -130,9 +155,6 @@ export const columns = {
 }
 
 export const TarjetaDeReservas = props => {
-  const [reservas, setReservas] = useState([]);
-  const [loading, setLoading] = useState(false);
-
   const defColumns = [
     columns.ResNro,
     columns.ResHab,
@@ -140,8 +162,25 @@ export const TarjetaDeReservas = props => {
     columns.ResEsta
   ];
 
+  const defFiltersValues = {
+    ResEsta: null
+  }
+
+  const [filetrsValues, setFiltersValues] = useState(defFiltersValues);
+  const [columnDef, setColumnDef] = useState([])
+  const [reservas, setReservas] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (pagination, filters, sorter) => {
+    setFiltersValues(filters);
+  };
+
+  defColumns.find(x => x.dataIndex === 'ResEsta').filteredValue = filetrsValues.ResEsta;
+
   useEffect(() => {
     setLoading(true);
+    setColumnDef(props.columns ? props.columns : defColumns)
+    setFiltersValues(props.filtersValues || defFiltersValues)
     Axios.get(props.url, {
     }).then((result) => {
       setReservas(handleReservas(result.data));
@@ -196,10 +235,11 @@ export const TarjetaDeReservas = props => {
           <p>Sin ingresos para hoy...</p>
         </div>)}>
         <Table
-          columns={props.columns ? props.columns : defColumns}
+          columns={columnDef}
           dataSource={reservas}
           bordered={false}
-          loading={loading} />
+          loading={loading}
+          onChange={handleChange} />
       </ConfigProvider>
     </Card>
   )
