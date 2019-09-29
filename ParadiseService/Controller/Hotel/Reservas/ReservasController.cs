@@ -15,6 +15,40 @@ namespace Paradise.Service.Controller.Hotel.Reservas
         // Reserva tarifa
         // Reserva seña
         // Reserva observaciones
+        [Route("{resNro}/observaciones")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetObservaciones(string resNro)
+        {
+            return await Task.Run<IHttpActionResult>(() =>
+            {
+                try
+                {
+                    using (var db = new ParadiseDataContext())
+                    {
+                        var result = (from obs
+                                     in db.RESOBSERVA
+                                      where obs.ResNro == Convert.ToInt32(resNro)
+                                      select obs.ResDatObs).ToList();
+                        return Ok(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return InternalServerError(ex);
+                }
+            });
+        }
+                                      where obs.ResNro == resNro
+                                      select obs).ToList();
+                        return Ok(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return InternalServerError(ex);
+                }
+            });
+        }
         // Reserva observaciones mucamas
         // Reserva historial
         // Reserva auditoria
