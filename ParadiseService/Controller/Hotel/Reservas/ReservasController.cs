@@ -34,6 +34,10 @@ namespace Paradise.Service.Controller.Hotel.Reservas
                         return Ok(result);
                     }
                 }
+                catch (System.Data.SqlClient.SqlException)
+                {
+                    return ResponseMessage(new HttpResponseMessage(HttpStatusCode.GatewayTimeout));
+                }
                 catch (Exception ex)
                 {
                     return InternalServerError(ex);
