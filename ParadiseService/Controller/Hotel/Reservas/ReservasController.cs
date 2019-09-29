@@ -16,6 +16,7 @@ namespace Paradise.Service.Controller.Hotel.Reservas
         // Reserva datos del cliente
         // Reserva tarifa
         // Reserva seña
+
         // Reserva observaciones
         [Route("{resNro}/observaciones")]
         [HttpGet]
@@ -27,6 +28,7 @@ namespace Paradise.Service.Controller.Hotel.Reservas
                 {
                     using (var db = new ParadiseDataContext())
                     {
+                        db.CommandTimeout = 5;
                         var result = (from obs
                                      in db.RESOBSERVA
                                       where obs.ResNro == Convert.ToInt32(resNro)
