@@ -118,8 +118,10 @@
     <Compile Include="Controller\Dashboard\PendientesDeConfirmar.cs" />
     <Compile Include="Controller\Dashboard\SalenHoyController.cs" />
     <Compile Include="Controller\Dashboard\IngresanHoyController.cs" />
-    <Compile Include="Controller\Hotel\Reservas\GetObservacionesMucamas.cs" />
+    <Compile Include="Controller\Hotel\Reservas\GetTarifa.cs" />
+    <Compile Include="Controller\Hotel\Reservas\GetSeña.cs" />
     <Compile Include="Controller\Hotel\Reservas\GetObservaciones.cs" />
+    <Compile Include="Controller\Hotel\Reservas\GetObservacionesMucamas.cs" />
     <Compile Include="Controller\Hotel\Reservas\ReservasController.cs" />
     <Compile Include="Controller\InfoController.cs" />
     <Compile Include="CustomContentTypeProvider.cs" />

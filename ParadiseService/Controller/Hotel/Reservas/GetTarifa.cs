@@ -9,9 +9,9 @@ namespace Paradise.Service.Controller.Hotel.Reservas
 {
     public partial class ReservasController : ApiController
     {
-        [Route("{resNro}/observaciones-mucamas")]
+        [Route("{resNro}/tarifa")]
         [HttpGet]
-        public async Task<IHttpActionResult> GetObservacionesMucamas(int resNro)
+        public async Task<IHttpActionResult> GetTarifa(string resNro)
         {
             return await Task.Run<IHttpActionResult>(() =>
             {
@@ -20,10 +20,10 @@ namespace Paradise.Service.Controller.Hotel.Reservas
                     using (var db = new ParadiseDataContext())
                     {
                         db.CommandTimeout = SQL_TIMEOUTE;
-                        var result = (from obs
-                                      in db.RESERVAMUCAMA
-                                      where obs.ResNro == Convert.ToInt32(resNro)
-                                      select obs.ResMucObs).ToList();
+                        var result = (from tarifa
+                                     in db.RESOCUP
+                                      where tarifa.ResNro == Convert.ToInt32(resNro)
+                                      select tarifa).ToList();
                         return Ok(result);
                     }
                 }
