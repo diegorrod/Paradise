@@ -44,7 +44,10 @@ namespace Paradise.Service.Controller.Hotel.Reservas
                                         ResTel = res.ResTel.Trim(' ').ToLower(),
                                         res.ResCamMat,
                                         res.ResCamSin,
-                                        res.ResCamCun
+                                        res.ResCamCun,
+                                        ResResPor = res.ResResPor.Trim(' ').ToLower(),
+                                        PenCod = GetReservaHelper.PenCod(res),
+                                        PenDetalle = GetReservaHelper.PenDetalle(res)
                                     };
                         var result = query.ToList().FirstOrDefault();
                         return Ok(result);
@@ -59,6 +62,70 @@ namespace Paradise.Service.Controller.Hotel.Reservas
                     return InternalServerError(ex);
                 }
             });
+        }
+
+        private static class GetReservaHelper
+        {
+            internal static string PenCod(RESERVA res)
+            {
+                switch (res.ResPlan.Trim(' ').ToLower())
+                {
+                    case "psd": return "sd";
+                    case "dsd": return "sd";
+                    case "pmp": return "mp";
+                    case "dmp": return "mp";
+                    case "pmpb": return "mpb";
+                    case "dmpb": return "mpb";
+                    case "ppc": return "pc";
+                    case "dpc": return "pc";
+                    case "ppcm": return "pcm";
+                    case "dpcm": return "pcm";
+                    default: return PenCodDesdeResResPor(res.ResResPor);
+                }
+            }
+            private static string PenCodDesdeResResPor(string ResResPor)
+            {
+                switch (ResResPor.Trim(' ').ToLower())
+                {
+                    case "sd": return "sd";
+                    case "mp": return "mp";
+                    case "mpb": return "mpb";
+                    case "pc": return "pc";
+                    case "pcm": return "pcm";
+                    default: return "sc";
+                }
+
+            }
+            internal static string PenDetalle(RESERVA res)
+            {
+                switch (res.ResPlan.Trim(' ').ToLower())
+                {
+                    case "psd": return "solo desayuno";
+                    case "dsd": return "solo desayuno";
+                    case "pmp": return "media pensión";
+                    case "dmp": return "media pensión";
+                    case "pmpb": return "media pensión con bebidas";
+                    case "dmpb": return "media pensión con bebidas";
+                    case "ppc": return "pensión completa";
+                    case "dpc": return "pensión completa";
+                    case "ppcm": return "pensión completa con merienda";
+                    case "dpcm": return "pensión completa con merienda";
+                    default: return PenDetalleDesdeResResPor(res.ResResPor);
+                }
+            }
+            private static string PenDetalleDesdeResResPor(string ResResPor)
+            {
+                switch (ResResPor.Trim(' ').ToLower())
+                {
+                    case "sd": return "solo desayuno";
+                    case "mp": return "media pensión";
+                    case "mpb": return "media pensión con bebida";
+                    case "pc": return "pensión completa";
+                    case "pcm": return "pensión completa con merienda";
+                    default: return "sin especificar";
+                }
+
+            }
         }
     }
 }

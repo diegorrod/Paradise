@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Moment from 'moment';
-import { Icon, Statistic, Row, Col, Timeline } from 'antd';
-import { UYU } from '../Banderas';
+import { Button, Icon, Statistic, Row, Col, Timeline } from 'antd';
 
 const Telefono = (data) => {
-  let value = '';
-  let prefix = null;
-
   if (data.length == 9 && data.charAt(0) == '0' && data.charAt(1) == '9'){
-    prefix = UYU;
-    value = `(+598) ${data.charAt(1)}${data.charAt(2)} ${data.charAt(3)}${data.charAt(4)}${data.charAt(5)} ${data.charAt(6)}${data.charAt(7)}${data.charAt(8)}`
+    const value = `(+598) ${data.charAt(1)}${data.charAt(2)} ${data.charAt(3)}${data.charAt(4)}${data.charAt(5)} ${data.charAt(6)}${data.charAt(7)}${data.charAt(8)}`
+    const wa = `https://wa.me/598${data.charAt(1)}${data.charAt(2)}${data.charAt(3)}${data.charAt(4)}${data.charAt(5)}${data.charAt(6)}${data.charAt(7)}${data.charAt(8)}`
+    return (<Statistic title="Teléfono" value={value} suffix={
+      <Button type="primary" onClick={() => window.open(wa, "_blank")}>
+        <Icon component={() => (
+          <i className={`fab fa-whatsapp`} style={{ fontSize: '1rem', color: '#ffffff', paddingBottom: '2px' }} />
+        )} />
+        Enviar WhatsApp
+      </Button>
+    } valueStyle={{fontSize: '1rem'}} />)
   } else {
-    value = `${data} `;
+    return(<Statistic title="Teléfono" value={`${data} `} valueStyle={{fontSize: '1rem'}} />);
   }
-  
-  return (<Statistic title="Teléfono" prefix={UYU} value={value} valueStyle={{fontSize: '1rem'}} />);
 }
 
 export const Info = props => {
@@ -35,7 +37,7 @@ export const Info = props => {
       <Row style={{marginBottom: '8px'}}>
         <Col span={12}>
           <Col style={{marginBottom: '8px'}} span={24}>
-            <Statistic title="Titular" value={Reserva.ResQuien} valueStyle={{fontSize: '1.5rem', fontWeight: '600'}} />
+            <Statistic title="Titular" value={Reserva.ResQuien} valueStyle={{fontSize: '1.5rem', fontWeight: '600', textTransform: 'capitalize'}} />
           </Col>
           <Col style={{marginBottom: '8px'}} span={12}>
             <Statistic title="Check In" value={Moment(Reserva.ResFecEnt).format('L')} valueStyle={{fontSize: '1rem'}} />
@@ -45,6 +47,12 @@ export const Info = props => {
           </Col>
           <Col style={{marginBottom: '8px'}} span={12}>
             {Telefono(Reserva.ResTel)}
+          </Col>
+          <Col style={{marginBottom: '8px'}} span={24}>
+            <Statistic title="Pensión" value={Reserva.PenDetalle} valueStyle={{fontSize: '1rem', fontWeight: '600', textTransform: 'capitalize'}} />
+          </Col>
+          <Col style={{marginBottom: '8px'}} span={24}>
+            <Statistic title="Rooming" value={`adultos: ${Reserva.ResCamMat} - menores: ${Reserva.ResCamSin} - bebés: ${Reserva.ResCamCun}`} valueStyle={{fontSize: '1rem', textTransform: 'capitalize'}} />
           </Col>
         </Col>
         <Col span={12}>
