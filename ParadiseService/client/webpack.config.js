@@ -20,6 +20,16 @@ module.exports = {
                         outputPath: 'fonts/'
                     }
                 }]
+            },
+            {
+                test: /\.(svg)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'assets/svg/'
+                    }
+                }]
             }
         ],
     },
@@ -28,6 +38,10 @@ module.exports = {
         new HtmlWebpackPlugin ({
             template : 'public/index.html'
         })
-    ]
-
+    ],
+    resolve: {
+        alias: {
+            "/": path.resolve(__dirname, 'src')
+        }
+    }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TarjetaDeReservas } from './TarjetaDeReservas';
+import { TarjetaDeReservas } from '../../components/TarjetaDeReservas';
 
 export const SalenHoy = () => {
 

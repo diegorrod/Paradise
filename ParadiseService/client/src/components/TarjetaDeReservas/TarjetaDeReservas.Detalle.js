@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
 import Moment from 'moment';
-import Numeral from 'numeral';
 import { Icon, Table, Tag, ConfigProvider, Modal, Statistic, Row, Col, Tabs, Timeline } from 'antd';
+import { Observaciones } from '../ModalReserva/Observaciones';
 
 export const detalleReserva = (Reserva) => {
   Moment.locale('es');
@@ -98,10 +97,7 @@ export const detalleReserva = (Reserva) => {
             Content of Tab Pane 2
           </Tabs.TabPane>
           <Tabs.TabPane tab="Observaciones" key="observaciones">
-            Content of Tab Pane 3
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="Obs. de mucamas" key="obs-de-mucamas">
-            Content of Tab Pane 4
+            <Observaciones resNro={Reserva.ResNro}/>
           </Tabs.TabPane>
         </Tabs>
       </div>

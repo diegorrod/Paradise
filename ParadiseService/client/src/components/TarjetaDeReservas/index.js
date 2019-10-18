@@ -4,6 +4,7 @@ import Moment from 'moment';
 import Numeral from 'numeral';
 import { Card, Breadcrumb, Icon, Table, Tag, ConfigProvider, notification, Button } from 'antd';
 import { detalleReserva } from './TarjetaDeReservas.Detalle';
+import { ModalReserva } from '../ModalReserva';
 
 const Estado = value => {
   let color = '#2196f3'
@@ -45,7 +46,7 @@ export const columns = {
     key: 'ResNro',
     width: 60,
     render: (text, record) => (
-        <a onClick={()=>detalleReserva(record)}>
+        <a onClick={()=>ModalReserva(record)}>
           {text}
         </a>        
       )

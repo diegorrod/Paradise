@@ -1,5 +1,5 @@
 import React from 'react';
-import { TarjetaDeReservas, columns } from './TarjetaDeReservas';
+import { TarjetaDeReservas, columns } from '../../components/TarjetaDeReservas';
 
 // TEMPORAL
 // import { Hotel } from '../../../driver'
