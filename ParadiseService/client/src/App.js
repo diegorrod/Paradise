@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
 import { Layout } from 'antd';
 import { Sider } from './components/Sider';
 import { Content } from './components/Content';
 import { Footer } from './components/Footer';
 
-export const App = props => {
+const app = () => {
   return(
     <HashRouter>
       <Layout style={{height: 'inherit'}}>
         <Layout.Header>
-
         </Layout.Header>
         <Layout>
           <Sider />
@@ -21,3 +21,5 @@ export const App = props => {
     </HashRouter>
   )
 }
+
+export const App = hot(module) (app);
