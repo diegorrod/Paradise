@@ -13,7 +13,6 @@ namespace Paradise.Service.Controller.Hotel.Reservas
     public partial class ReservasController : ApiController
     {
         internal static int SQL_TIMEOUTE = 5;
-        // Reserva basica
         // Reserva datos del cliente
         // Reserva tarifa
         // Reserva seña

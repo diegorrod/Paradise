@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Moment from 'moment';
 import { Icon, Table, Tag, ConfigProvider, Modal, Statistic, Row, Col, Tabs, Timeline } from 'antd';
 import { Info } from './Info';
+import { TarifaSeña } from './TarifaSeña';
 
 export const ModalReserva = (Reserva) => {
   Moment.locale('es');
@@ -25,11 +26,8 @@ export const ModalReserva = (Reserva) => {
           <Tabs.TabPane tab="Info" key="info">
             <Info resNro={Reserva.ResNro} />
           </Tabs.TabPane>
-          <Tabs.TabPane tab="Tarifa" key="tarifa">
-            Content of Tab Pane 2
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="Seña" key="seña">
-            Content of Tab Pane 2
+          <Tabs.TabPane tab="Tarifa y Seña" key="tarifa">
+            <TarifaSeña resNro={Reserva.ResNro} />
           </Tabs.TabPane>
           <Tabs.TabPane tab="Observaciones" key="observaciones">
             Content of Tab Pane 3

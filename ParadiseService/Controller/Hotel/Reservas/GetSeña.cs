@@ -20,10 +20,19 @@ namespace Paradise.Service.Controller.Hotel.Reservas
                     using (var db = new ParadiseDataContext())
                     {
                         db.CommandTimeout = SQL_TIMEOUTE;
-                        var result = (from seña
-                                     in db.RESSENIA
-                                      where seña.ResNro == Convert.ToInt32(resNro)
-                                      select seña).ToList();
+                        var query = from seña
+                                    in db.RESSENIA
+                                    join moneda in db.MONEDAS on seña.ResSenMon equals moneda.MonId
+                                    where seña.ResNro == Convert.ToInt32(resNro)
+                                    select new
+                                    {
+                                        seña.ResSenFecha,
+                                        MonSim = moneda.MonSim.Trim(' ').ToLower(),
+                                        seña.ResSenImp,
+                                        Presencial = seña.ResSenPresencial == 'S' ? true : false,
+                                        seña.ResSenDetCobr
+                                    };
+                        var result = query.ToList();
                         return Ok(result);
                     }
                 }

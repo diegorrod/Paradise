@@ -20,11 +20,29 @@ namespace Paradise.Service.Controller.Hotel.Reservas
                     using (var db = new ParadiseDataContext())
                     {
                         db.CommandTimeout = SQL_TIMEOUTE;
-                        var result = (from tarifa
-                                     in db.RESOCUP
-                                      where tarifa.ResNro == Convert.ToInt32(resNro)
-                                      select tarifa).ToList();
-                        return Ok(result);
+                        var queryTarDet = from tar
+                                          in db.RESOCUP
+                                          where tar.ResNro == Convert.ToInt32(resNro)
+                                          select new
+                                          {
+                                              ResTarDet = tar.ResTarDet.Trim(' ').ToLower(),
+                                              tar.ResTarDiaCImp,
+                                              tar.ResTarDias
+                                          };
+
+                        var queryTar = from res
+                                       in db.RESERVA
+                                       join pla in db.TARIFAS on res.ResPlan equals pla.PlaCod
+                                       join mon in db.MONEDAS on pla.PlaMoneda equals mon.MonId
+                                       where res.ResNro == Convert.ToInt32(resNro)
+                                       select new
+                                       {
+                                           ResPlan = res.ResPlan.Trim(' ').ToLower(),
+                                           PlaNom = pla.PlaNom.Trim(' ').ToLower(),
+                                           MonSim = mon.MonSim.Trim(' ').ToLower(),
+                                           detalle = queryTarDet.ToList()
+                                       };
+                        return Ok(queryTar.First());
                     }
                 }
                 catch (System.Data.SqlClient.SqlException)

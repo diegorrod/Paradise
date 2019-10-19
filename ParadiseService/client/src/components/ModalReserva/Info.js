@@ -12,7 +12,6 @@ const Telefono = (data) => {
         <Icon component={() => (
           <i className={`fab fa-whatsapp`} style={{ fontSize: '1rem', color: '#ffffff', paddingBottom: '2px' }} />
         )} />
-        Enviar WhatsApp
       </Button>
     } valueStyle={{fontSize: '1rem'}} />)
   } else {
@@ -27,7 +26,6 @@ export const Info = props => {
   if(props.resNro) {
     Axios.get(`http://localhost:3030/api/hotel/reservas/${props.resNro}`)
     .then((result) => {
-      console.log(result.data);
       SetReserva(result.data);
     })
   }},[]);
