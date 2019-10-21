@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { HashRouter } from 'react-router-dom';
-import { hot } from 'react-hot-loader';
+import { hot } from 'react-hot-loader/root';
 import { Layout } from 'antd';
 import { Sider } from './components/Sider';
 import { Content } from './components/Content';
@@ -22,4 +22,4 @@ const app = () => {
   )
 }
 
-export const App = hot(module) (app);
+export const App = hot(app);

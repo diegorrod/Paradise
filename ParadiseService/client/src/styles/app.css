@@ -7,3 +7,18 @@ body {
 #App {
   height: 100%;
 }
+.textTransform-capitalize > 
+.ant-descriptions-item-content,
+.ant-descriptions-item-label {
+  text-transform: capitalize;
+}
+.fontSize-24px > 
+.ant-descriptions-item-content {
+  font-size: 24px;
+}
+.ant-descriptions-item-label {
+  font-weight: 600;
+}
+.ant-descriptions-row > th, .ant-descriptions-row > td {
+  padding-bottom: 6px;
+}

@@ -8,7 +8,7 @@ export const Dashboard = () => {
   return (
     <Layout>
       <Layout.Header style={{backgroundColor: '#f0f2f5'}}>
-      <PageHeader title="Dashboard" tags={<Tag color="#2196f3">Beta</Tag>}/>
+        <PageHeader title="Dashboard" tags={<Tag color="#2196f3">Beta</Tag>}/>
       </Layout.Header>
       <Layout.Content>
         <Divider style={{padding: '0 50px'}}>Información general</Divider>
