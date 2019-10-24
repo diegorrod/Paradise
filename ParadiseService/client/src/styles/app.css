@@ -22,3 +22,11 @@ body {
 .ant-descriptions-row > th, .ant-descriptions-row > td {
   padding-bottom: 6px;
 }
+
+.--text-transform-uppercase {
+  text-transform: uppercase;
+}
+
+.--fw600 {
+  font-weight: 600;
+}

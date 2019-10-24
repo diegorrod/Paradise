@@ -1,0 +1,7 @@
+th.hotel-reserva-detalle--column-number,
+td.hotel-reserva-detalle--column-number {
+  text-align: right !important;
+}
+td.hotel-reserva-detalle--column-number {
+  text-transform: uppercase !important;
+}
