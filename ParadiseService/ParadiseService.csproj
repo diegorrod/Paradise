@@ -68,6 +68,9 @@
     <Reference Include="Microsoft.Owin.StaticFiles, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.StaticFiles.4.0.1\lib\net45\Microsoft.Owin.StaticFiles.dll</HintPath>
     </Reference>
+    <Reference Include="MikrotikDotNet, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mikrotik.Net.1.0.3\lib\net45\MikrotikDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="Nancy, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nancy.2.0.0\lib\net452\Nancy.dll</HintPath>
     </Reference>
@@ -124,6 +127,7 @@
     <Compile Include="Controller\Hotel\Reservas\GetSeña.cs" />
     <Compile Include="Controller\Hotel\Reservas\GetObservaciones.cs" />
     <Compile Include="Controller\Hotel\Reservas\GetObservacionesMucamas.cs" />
+    <Compile Include="Controller\Hotel\Reservas\GetWifi.cs" />
     <Compile Include="Controller\Hotel\Reservas\ReservasController.cs" />
     <Compile Include="Controller\InfoController.cs" />
     <Compile Include="CustomContentTypeProvider.cs" />

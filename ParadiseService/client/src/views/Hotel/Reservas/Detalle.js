@@ -5,6 +5,8 @@ import Moment from 'moment';
 import { useParams } from 'react-router-dom';
 import { Layout, PageHeader, Tag, Divider, Descriptions, Skeleton, Card, Button, Icon, Typography, Table } from 'antd';
 
+import { WiFi } from './WiFi';
+
 import './Detalle.css';
 
 const procesarTelefono = (data) => {
@@ -311,6 +313,7 @@ export const Detalle = () => {
               }
             </Card>
           <Divider style={{padding: '0 50px'}}>WiFi</Divider>
+          <WiFi />
           <Divider style={{padding: '0 50px'}}>Pensión</Divider>
           <Divider style={{padding: '0 50px'}}>Rooming</Divider>
         </Layout.Content>
