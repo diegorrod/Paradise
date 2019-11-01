@@ -31,8 +31,8 @@ namespace Paradise.Service.Controller.Hotel.Reservas
                         var result = usuarios.ExecuteReaderDynamic();
                         return Ok(new 
                         {
-                            result.Nombre,
-                            result.Password,
+                            //result.Nombre,
+                            //result.Password,
 
                         });
                     }
